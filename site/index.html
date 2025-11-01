@@ -1,0 +1,85 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Крошка-Обувь — Пример магазина</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container top">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="burger" id="burger" aria-label="Открыть меню">☰</div>
+        <div class="logo">Крошка‑Обувь</div>
+      </div>
+      <nav id="nav">
+        <a href="#" data-nav="all">Каталог</a>
+        <a href="#" data-nav="sneakers">Кеды</a>
+        <a href="#" data-nav="boots">Ботинки</a>
+        <a href="#" data-nav="sandals">Сандалии</a>
+        <div style="width:10px"></div>
+        <button class="cart-btn" id="openCart"><span>🛒</span><span class="badge" id="cartCount">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <aside>
+        <div class="filters">
+          <div class="muted">Категории</div>
+          <div class="cats" id="categoryList"></div>
+          <div class="muted">Фильтры</div>
+          <label class="muted">Цена до: <input type="range" id="priceRange" min="0" max="300" value="300"></label>
+          <div class="muted">Поиск</div>
+          <input type="search" id="leftSearch" placeholder="По названию или описанию" class="search-left">
+          <button class="ghost" id="clearFilters">Сбросить фильтры</button>
+        </div>
+      </aside>
+
+      <section>
+        <div class="container">
+          <div class="controls">
+            <div class="search">
+              <input id="search" placeholder="Поиск по товарам" aria-label="Поиск">
+              <button class="ghost" id="searchBtn">Найти</button>
+            </div>
+            <div class="sort">
+              <select id="sortSelect">
+                <option value="popular">Популярные</option>
+                <option value="price-asc">Цена ↑</option>
+                <option value="price-desc">Цена ↓</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="catalog" id="catalog"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-header">
+      <div style="font-weight:700">Корзина</div>
+      <div><button class="ghost" id="closeCart">Закрыть</button></div>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-footer">
+      <div class="total"><span>Итого:</span><span id="cartTotal">0 ₽</span></div>
+      <div class="actions">
+        <button class="btn" id="checkout">Оформить</button>
+        <button class="ghost" id="clearCart">Очистить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">Пример магазина — демо. Измените товары и стиль по вкусу.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
