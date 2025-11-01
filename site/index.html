@@ -1,85 +1,158 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Крошка-Обувь — Пример магазина</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Atlas Bank — Личный кабинет</title>
+  <meta name="description" content="Прототип адаптивного сайта банка (HTML/CSS/JS)." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="container top">
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="burger" id="burger" aria-label="Открыть меню">☰</div>
-        <div class="logo">Крошка‑Обувь</div>
-      </div>
-      <nav id="nav">
-        <a href="#" data-nav="all">Каталог</a>
-        <a href="#" data-nav="sneakers">Кеды</a>
-        <a href="#" data-nav="boots">Ботинки</a>
-        <a href="#" data-nav="sandals">Сандалии</a>
-        <div style="width:10px"></div>
-        <button class="cart-btn" id="openCart"><span>🛒</span><span class="badge" id="cartCount">0</span></button>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="grid">
-      <aside>
-        <div class="filters">
-          <div class="muted">Категории</div>
-          <div class="cats" id="categoryList"></div>
-          <div class="muted">Фильтры</div>
-          <label class="muted">Цена до: <input type="range" id="priceRange" min="0" max="300" value="300"></label>
-          <div class="muted">Поиск</div>
-          <input type="search" id="leftSearch" placeholder="По названию или описанию" class="search-left">
-          <button class="ghost" id="clearFilters">Сбросить фильтры</button>
+  <div class="wrap">
+    <header class="site">
+      <div class="brand">
+        <div class="logo">AB</div>
+        <div>
+          <h1>Atlas Bank</h1>
+          <div class="small muted">Инновационный онлайн-банк</div>
         </div>
-      </aside>
+      </div>
 
+      <nav class="primary" aria-label="Главная навигация">
+        <a href="#" class="active">Счета</a>
+        <a href="#">Платежи</a>
+        <a href="#">Кредит</a>
+        <a href="#">Поддержка</a>
+        <button class="btn" id="openTransfer">Перевод</button>
+      </nav>
+    </header>
+
+    <main class="grid" role="main">
       <section>
-        <div class="container">
-          <div class="controls">
-            <div class="search">
-              <input id="search" placeholder="Поиск по товарам" aria-label="Поиск">
-              <button class="ghost" id="searchBtn">Найти</button>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div>
+              <div class="small">Привет,</div>
+              <div class="large">Екатерина</div>
             </div>
-            <div class="sort">
-              <select id="sortSelect">
-                <option value="popular">Популярные</option>
-                <option value="price-asc">Цена ↑</option>
-                <option value="price-desc">Цена ↓</option>
-              </select>
+            <div class="right small muted">Последний вход: 1 ноября 2025</div>
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+            <div style="min-width:220px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#ffffff,#f7fffe);box-shadow:var(--shadow)">
+              <div class="small muted">Доступный баланс</div>
+              <div class="large">₽ 132,450.20</div>
+              <div class="small muted">Основной валютный счет • ****1234</div>
+            </div>
+
+            <div style="flex:1;min-width:200px;">
+              <div class="actions">
+                <button class="btn" id="btnPay">Заплатить</button>
+                <button class="btn ghost" id="btnCard">Моя карта</button>
+                <button class="btn ghost">История</button>
+              </div>
             </div>
           </div>
 
-          <div class="catalog" id="catalog"></div>
+          <div style="margin-top:20px">
+            <h3 style="margin:0 0 10px 0">Счета</h3>
+            <div class="accounts">
+              <div class="account-row">
+                <div class="account-left">
+                  <div class="acc-chip">₽</div>
+                  <div>
+                    <div style="font-weight:700">Текущий счет</div>
+                    <div class="small muted">rub • ****1234</div>
+                  </div>
+                </div>
+                <div style="text-align:right">
+                  <div class="large">₽ 102,350.20</div>
+                  <div class="small muted">Последняя транзакция: −1,200</div>
+                </div>
+              </div>
+
+              <div class="account-row">
+                <div class="account-left">
+                  <div class="acc-chip">$</div>
+                  <div>
+                    <div style="font-weight:700">Сбережения</div>
+                    <div class="small muted">usd • ****7788</div>
+                  </div>
+                </div>
+                <div style="text-align:right">
+                  <div class="large">$ 4,200.50</div>
+                  <div class="small muted">Процентная ставка: 1.2% годовых</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin:0 0 12px 0">Последние операции</h3>
+          <div class="transactions-list" id="txList">
+            <!-- JS will populate -->
+          </div>
         </div>
       </section>
-    </div>
-  </main>
 
-  <div class="cart-panel" id="cartPanel" aria-hidden="true">
-    <div class="cart-header">
-      <div style="font-weight:700">Корзина</div>
-      <div><button class="ghost" id="closeCart">Закрыть</button></div>
-    </div>
-    <div class="cart-list" id="cartList"></div>
-    <div class="cart-footer">
-      <div class="total"><span>Итого:</span><span id="cartTotal">0 ₽</span></div>
-      <div class="actions">
-        <button class="btn" id="checkout">Оформить</button>
-        <button class="ghost" id="clearCart">Очистить</button>
+      <aside class="right">
+        <div class="card">
+          <div class="profile">
+            <div class="avatar">ЕК</div>
+            <div>
+              <div style="font-weight:700">Екатерина И.</div>
+              <div class="small muted">Клиент с 2020</div>
+            </div>
+          </div>
+
+          <div class="goal">
+            <div class="small muted">Накопления</div>
+            <div style="font-weight:700;margin-top:6px">Квартирный ремонт</div>
+            <div class="small muted" style="margin-top:8px">₽ 40,000 / ₽ 120,000</div>
+            <div style="height:8px;background:#e6f6f6;border-radius:8px;margin-top:10px;overflow:hidden">
+              <div style="width:33%;height:100%;background:linear-gradient(90deg,var(--accent),#6dd3d3)"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn">Карта</button>
+            <button class="btn ghost">Настройки</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="small muted">Поддержка</div>
+          <div style="margin-top:8px">8:00–22:00 • +7 800 555 01 02</div>
+          <button class="btn" style="margin-top:10px">Чат</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Transfer modal -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modTitle">
+      <h3 id="modTitle">Новый перевод</h3>
+      <div class="form-row">
+        <label for="to">Кому (номер/карта)</label>
+        <input id="to" placeholder="Введите номер карты или получателя" />
+      </div>
+      <div class="form-row">
+        <label for="amount">Сумма</label>
+        <input id="amount" type="number" placeholder="0.00" />
+      </div>
+      <div class="form-row">
+        <label for="note">Назначение</label>
+        <input id="note" placeholder="Например: оплата аренды" />
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+        <button class="btn ghost" id="closeModal">Отмена</button>
+        <button class="btn" id="sendTransfer">Отправить</button>
       </div>
     </div>
   </div>
 
-  <footer>
-    <div class="container">Пример магазина — демо. Измените товары и стиль по вкусу.</div>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
